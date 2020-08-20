@@ -18,5 +18,4 @@
 
 ## 捐赠
 你的认可是我最大的动力！
-![](http://cdn.kuokuo666.com/ma/weixinmm.png)
-![](http://cdn.kuokuo666.com/ma/zfbaomm.jpg)
+![](http://cdn.kuokuo666.com/ma/twoma.jpg)
