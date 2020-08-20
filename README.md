@@ -14,7 +14,9 @@
 文档会同步更新到此地址： [https://kuokuo666.github.io](https://kuokuo666.github.io)
 
 ## 反馈
-这个扩展库只是 KUOKUO 个人维护，有想法欢迎反馈给我，加入 QQ 群：---
+这个扩展库只是 KUOKUO 个人维护，有想法欢迎反馈给我，加入 QQ 群：1085201157
 
 ## 捐赠
 你的认可是我最大的动力！
+![](http://cdn.kuokuo666.com/ma/weixinmm.png)
+![](http://cdn.kuokuo666.com/ma/zfbaomm.jpg)
