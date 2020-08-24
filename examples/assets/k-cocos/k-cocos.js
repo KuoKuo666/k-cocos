@@ -58,7 +58,6 @@
                 },
                 set(val) {
                     console.error(`can not set kComponents, please use addComponent()`);
-                    return;
                 }
             }
         });
