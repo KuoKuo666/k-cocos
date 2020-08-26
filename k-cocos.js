@@ -19,22 +19,18 @@
         cc.director._kSpeed = speed;
     }
 
-    cc.kMultTouch = function (isOpen) {
+    cc.kMultTouch = function (count) {
         // 2.3.0 版本以上
-        if (cc.macro.ENABLE_MULTI_TOUCH !== undefined) {
-            cc.macro.ENABLE_MULTI_TOUCH = isOpen;
-            return;
+        if (cc.internal.inputManager) {
+            cc.internal.inputManager._maxTouches = count;
         }
-        if (!isOpen) {
-            // 低版本
-            _cc && _cc.inputManager && (_cc.inputManager._maxTouches = 1);
-            // QQ_PLAY
-            CC_QQPLAY && BK && BK.inputManager && (BK.inputManager._maxTouches = 1);
-        } else {
-            // 低版本
-            _cc && _cc.inputManager && (_cc.inputManager._maxTouches = 8);
-            // QQ_PLAY
-            CC_QQPLAY && BK && BK.inputManager && (BK.inputManager._maxTouches = 5);
+        // 低版本
+        if (_cc && _cc.inputManager) {
+            _cc.inputManager._maxTouches = count;
+        }
+        // 兼容低版本的 QQ_PLAY
+        if (CC_QQPLAY && BK && BK.inputManager) {
+            BK.inputManager._maxTouches = count;
         }
     }
 

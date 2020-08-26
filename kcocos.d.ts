@@ -12,6 +12,12 @@ declare namespace cc {
     export function kNode(node: cc.Node): cc.Node;
 
     /**
+     * 传入 0 时禁止所有点击，传入 1 为单点触控，一些平台无法超过 5
+     * @param count 触点数量
+     */
+    export function kMultTouch(count: number): void;
+
+    /**
      * 节点扩展属性与方法
      */
     export interface Node {
