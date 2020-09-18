@@ -5,7 +5,7 @@
  */
 
 (function (global) {
-    console.log('k-cocos v0.1');
+    cc.log('k-cocos v0.1');
     var cc = global.cc;
 
     cc.director._kSpeed = 1;
@@ -21,7 +21,7 @@
 
     cc.kMultTouch = function (count) {
         // 2.3.0 版本以上
-        if (cc.internal.inputManager) {
+        if (cc.internal && cc.internal.inputManager) {
             cc.internal.inputManager._maxTouches = count;
         }
         // 低版本
@@ -53,7 +53,7 @@
                     return this._components;
                 },
                 set(val) {
-                    console.error(`can not set kComponents, please use addComponent()`);
+                    cc.error(`can not set kComponents, please use addComponent()`);
                 }
             }
         });
