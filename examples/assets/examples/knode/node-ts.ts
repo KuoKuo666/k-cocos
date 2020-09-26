@@ -19,7 +19,7 @@ export default class NewClass extends cc.Component {
         this.moveNode.kState = "stop";
 
         const sss = this.moveNode.kComponents
-        const s = sss[0]
+        const s: cc.Sprite = sss[0]
     }
 
     // 按钮调用，使得节点运动

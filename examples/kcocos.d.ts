@@ -44,7 +44,7 @@ declare namespace cc {
         /**
          * 扩展属性，获取当前节点上所有组件
          */
-        kComponents: cc.Component[];
+        kComponents: any[];
 
         /**
          * 扩展方法，kInfo 改变后触发
