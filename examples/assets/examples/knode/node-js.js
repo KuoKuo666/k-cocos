@@ -8,22 +8,28 @@ cc.Class({
     onLoad () {
         // 扩展节点
         cc.kNode(this.moveNode);
+
+        console.log(this.moveNode);
         
         // 指定节点状态切换回调函数
-        this.moveNode.kInfoCb = (newVal, oldVal) => {
+        this.moveNode.kStateCb = (newVal, oldVal) => {
             console.log(`状态改变: ${oldVal} -> ${newVal}`);
         }
 
         // 默认停止状态
-        this.moveNode.kInfo = "stop";
+        this.moveNode.kState = "stop";
+
+        console.log(this.moveNode.kComponents)
+        console.log(this.moveNode.kFirstChild)
+        console.log(this.moveNode.kLastChild)
     },
 
     // 按钮调用，使得节点运动
     move () {
-        this.moveNode.kInfo = "isMoving";
+        this.moveNode.kState = "isMoving";
         cc.tween(this.moveNode)
             .by(2, { x: 400 })
-            .call(() => this.moveNode.kInfo = "stop")
+            .call(() => this.moveNode.kState = "stop")
             .start();
     }
 
