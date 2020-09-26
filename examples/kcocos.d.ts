@@ -51,5 +51,25 @@ declare namespace cc {
          */
         kStateCb: (newVal: string, oldVal: string) => void;
 
+        /**
+         * 扩展方法，设置节点移动速度
+         */
+        setkNodeSpeed: (x: number | cc.Vec2 = 0, y: number = 0) => void;
+
+        /**
+         * 扩展方法，获取节点移动速度
+         */
+        getkNodeSpeed: () => cc.Vec2;
+
+        /**
+         * 扩展方法，设置节点的加速度
+         */
+        setkAccelerate: (x: number | cc.Vec2 = 0, y: number = 0) => void;
+
+        /**
+         * 扩展方法，获取节点的加速度
+         */
+        getkAccelerate: () => cc.Vec2;
+
     }
 }

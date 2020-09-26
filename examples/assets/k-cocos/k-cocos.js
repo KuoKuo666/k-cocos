@@ -40,6 +40,28 @@
         }
     }
 
+    // 扩展移动方式脚本
+    var kNodeMoveComp = cc.Class({
+        extends: cc.Component,
+        properties: {
+            nodeSpeed_x: 0,
+            nodeSpeed_y: 0,
+
+            nodeAccelerate_x: 0,
+            nodeAccelerate_y: 0
+        },
+        editor: {
+            // 想让该组件最后执行 update
+            executionOrder: 9999
+        },
+        update: function(dt) {
+            this.nodeSpeed_x += this.nodeAccelerate_x;
+            this.nodeSpeed_y += this.nodeAccelerate_y;
+            this.node.x += this.nodeSpeed_x * dt;
+            this.node.y += this.nodeSpeed_y * dt;
+        }
+    });
+
     // 强化节点
     cc.kNode = function (node) {
         // 记录节点信息
@@ -86,6 +108,41 @@
                 }
             }
         });
+
+        // 添加扩展移动脚本
+        node._kNodeMoveComp = node.addComponent(kNodeMoveComp);
+
+        // 设置速度的方法
+        node.setkNodeSpeed = function(x, y) {
+            if (x && typeof x === 'object') {
+                this._kNodeMoveComp.nodeSpeed_x = x.x || 0;
+                this._kNodeMoveComp.nodeSpeed_y = x.y || 0;
+            } else {
+                this._kNodeMoveComp.nodeSpeed_x = x || 0;
+                this._kNodeMoveComp.nodeSpeed_y = y || 0;
+            }
+        }
+
+        // 获取速度的方法
+        node.getkNodeSpeed = function() {
+            return new cc.Vec2(this._kNodeMoveComp.nodeSpeed_x, this._kNodeMoveComp.nodeSpeed_y);
+        }
+
+        // 设置节点加速度
+        node.setkAccelerate = function(x, y) {
+            if (x && typeof x === 'object') {
+                this._kNodeMoveComp.nodeAccelerate_x = x.x || 0;
+                this._kNodeMoveComp.nodeAccelerate_y = x.y || 0;
+            } else {
+                this._kNodeMoveComp.nodeAccelerate_x = x || 0;
+                this._kNodeMoveComp.nodeAccelerate_y = y || 0;
+            }
+        }
+
+        // 获取加速度的方法
+        node.getkAccelerate = function() {
+            return new cc.Vec2(this._kNodeMoveComp.nodeAccelerate_x, this._kNodeMoveComp.nodeAccelerate_y);
+        }
 
         node.kHitTest = function (cb) {
             this._hitTest = cb;

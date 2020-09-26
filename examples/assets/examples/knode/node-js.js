@@ -19,18 +19,22 @@ cc.Class({
         // 默认停止状态
         this.moveNode.kState = "stop";
 
-        console.log(this.moveNode.kComponents)
-        console.log(this.moveNode.kFirstChild)
-        console.log(this.moveNode.kLastChild)
+        // console.log(this.moveNode.kComponents)
+        // console.log(this.moveNode.kFirstChild)
+        // console.log(this.moveNode.kLastChild)
     },
 
     // 按钮调用，使得节点运动
     move () {
-        this.moveNode.kState = "isMoving";
-        cc.tween(this.moveNode)
-            .by(2, { x: 400 })
-            .call(() => this.moveNode.kState = "stop")
-            .start();
+        // this.moveNode.kState = "isMoving";
+        // cc.tween(this.moveNode)
+        //     .by(2, { x: 400 })
+        //     .call(() => this.moveNode.kState = "stop")
+        //     .start();
+        // this.moveNode.setkAccelerate(10, 0)
+        // this.moveNode.setkNodeSpeed(10, 0)
+        console.log(this.moveNode.getkNodeSpeed())
+        console.log(this.moveNode.getkAccelerate())
     }
 
 });
