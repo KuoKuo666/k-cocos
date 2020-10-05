@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * k-cocos 扩展库
  * 作者： kuokuo
@@ -8,8 +6,10 @@
  */
 
 (function (global) {
-    console.log('k-cocos v0.1');
+    'use strict';
+
     var cc = global.cc;
+    cc.log('k-cocos v0.1');
 
     // 游戏速率
     cc.director._kSpeed = 1;
@@ -66,7 +66,7 @@
     cc.kNode = function (node) {
         // 记录节点信息
         node.kInfo = 'init';
-
+        // 简易状态机
         node._kState = 'init';
         Object.defineProperties(node, {
             // 简易状态机
@@ -77,6 +77,7 @@
                 set(val) {
                     var old = this._kState;
                     this._kState = val;
+                    // 如果存在回调则调用，传入新旧状态
                     this.kStateCb && this.kStateCb(val, old);
                 }
             },
@@ -109,7 +110,7 @@
             }
         });
 
-        // 添加扩展移动脚本
+        // 添加扩展移动脚本，并缓存引用到 _kNodeMoveComp
         node._kNodeMoveComp = node.addComponent(kNodeMoveComp);
 
         // 设置速度的方法
