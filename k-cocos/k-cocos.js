@@ -9,6 +9,8 @@
     'use strict';
 
     var cc = global.cc;
+    var sp = global.sp;
+    var dragonBones = global.dragonBones;
     cc.log('k-cocos v0.1');
 
     // 游戏速率
@@ -99,6 +101,24 @@
                     cc.error(`can not set kFirstChild, please use addChild()`);
                 }
             },
+            // 第二个子节点
+            kSecondChild: {
+                get() {
+                    return this.children[1];
+                },
+                set(val) {
+                    cc.error(`can not set kSecondChild, please use addChild()`);
+                }
+            },
+            // 第三个子节点
+            kThirdChild: {
+                get() {
+                    return this.children[2];
+                },
+                set(val) {
+                    cc.error(`can not set kThirdChild, please use addChild()`);
+                }
+            },
             // 最后一个子节点
             kLastChild: {
                 get() {
@@ -106,6 +126,87 @@
                 },
                 set(val) {
                     cc.error(`can not set kFirstChild, please use addChild()`);
+                }
+            },
+            // 快捷获取组件
+            kSprite: {
+                get() {
+                    return this.getComponent(cc.Sprite);
+                },
+                set(val) {
+                    cc.error(`can not set kSprite, please use addComponent()`);
+                }
+            },
+            kLabel: {
+                get() {
+                    return this.getComponent(cc.Label);
+                },
+                set(val) {
+                    cc.error(`can not set kLabel, please use addComponent()`);
+                }
+            },
+            kMask: {
+                get() {
+                    return this.getComponent(cc.Mask);
+                },
+                set(val) {
+                    cc.error(`can not set kMask, please use addComponent()`);
+                }
+            },
+            kGraphics: {
+                get() {
+                    return this.getComponent(cc.Graphics);
+                },
+                set(val) {
+                    cc.error(`can not set kGraphics, please use addComponent()`);
+                }
+            },
+            kAudioSource: {
+                get() {
+                    return this.getComponent(cc.AudioSource);
+                },
+                set(val) {
+                    cc.error(`can not set kAudioSource, please use addComponent()`);
+                }
+            },
+            kAnimation: {
+                get() {
+                    return this.getComponent(cc.Animation);
+                },
+                set(val) {
+                    cc.error(`can not set kAnimation, please use addComponent()`);
+                }
+            },
+            kParticleSystem: {
+                get() {
+                    return this.getComponent(cc.ParticleSystem);
+                },
+                set(val) {
+                    cc.error(`can not set kParticleSystem, please use addComponent()`);
+                }
+            },
+            kSpine: {
+                get() {
+                    return this.getComponent(sp.Skeleton);
+                },
+                set(val) {
+                    cc.error(`can not set kSpine, please use addComponent()`);
+                }
+            },
+            kDragonBones: {
+                get() {
+                    return this.getComponent(dragonBones.ArmatureDisplay);
+                },
+                set(val) {
+                    cc.error(`can not set kDragonBones, please use addComponent()`);
+                }
+            },
+            kButton: {
+                get() {
+                    return this.getComponent(cc.Button);
+                },
+                set(val) {
+                    cc.error(`can not set kButton, please use addComponent()`);
                 }
             }
         });

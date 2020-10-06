@@ -21,7 +21,7 @@ export default class NewClass extends cc.Component {
     // onLoad () {}
 
     start () {
-
+        this.getComponent(cc.Layout)
     }
 
     // update (dt) {}
