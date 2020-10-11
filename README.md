@@ -7,6 +7,8 @@
 
 一个对 CocosCreator API 的 JS 轻量扩展库。(A lightweight JavaScript extension library for cocoscreater by kuokuo.)
 
+仓库地址： [https://github.com/KuoKuo666/k-cocos](https://github.com/KuoKuo666/k-cocos)
+
 ## 如何使用
 下载文件 `k-cocos.js`，在项目中将其 `导入为插件`，即可使用扩展的 API。对于 TypeScript 开发者，需要将 `kcocos.d.ts` 放入项目目录，即可获得智能提示。
 
