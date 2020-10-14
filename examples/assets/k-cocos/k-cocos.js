@@ -70,6 +70,8 @@
 
     // 强化节点
     cc.kNode = function (node) {
+        // 节点数字标志
+        node.kTag = 0;
         // 记录节点信息
         node.kInfo = 'init';
         // 简易状态机

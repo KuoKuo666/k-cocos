@@ -27,6 +27,11 @@ declare namespace cc {
      */
     export interface Node {
         /**
+         * 扩展属性，数字标签
+         */
+        kTag: number;
+
+        /**
          * 扩展属性，字符串信息
          */
         kInfo: string;
