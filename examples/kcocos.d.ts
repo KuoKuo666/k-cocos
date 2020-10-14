@@ -6,6 +6,11 @@ declare namespace cc {
     export function kSpeed(speed: number): void;
 
     /**
+     * 获取游戏速率
+     */
+    export function kGetSpeed(): number;
+
+    /**
      * 将普通节点扩展成超级节点
      * @param node 节点
      */

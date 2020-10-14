@@ -25,6 +25,10 @@
         cc.director._kSpeed = speed;
     }
 
+    cc.kGetSpeed = function() {
+        return cc.director._kSpeed
+    }
+
     // 触点数量控制
     cc.kMultTouch = function (count) {
         // 2.3.0 版本以上
