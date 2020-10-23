@@ -6,6 +6,8 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     moveNode: cc.Node = undefined;
 
+    simpleMoveComp: cc.kSimpleMove;
+
     onLoad () {
         // 扩展节点
         cc.kNode(this.moveNode);
@@ -20,6 +22,8 @@ export default class NewClass extends cc.Component {
 
         const sss = this.moveNode.kComponents
         console.log(sss)
+
+        this.simpleMoveComp = this.moveNode.addComponent(cc.kSimpleMove)
     }
 
     // 按钮调用，使得节点运动
@@ -37,9 +41,9 @@ export default class NewClass extends cc.Component {
 
     update() {
         if (this.moveNode.x < 0) {
-            this.moveNode.setkAccelerate(10, 0)
+            this.simpleMoveComp.setAccelerate(10, 0)
         } else {
-            this.moveNode.setkAccelerate(-10, 0)
+            this.simpleMoveComp.setAccelerate(-10, 0)
         }
     }
 

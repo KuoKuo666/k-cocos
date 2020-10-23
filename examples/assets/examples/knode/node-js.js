@@ -19,6 +19,8 @@ cc.Class({
         // 默认停止状态
         this.moveNode.kState = "stop";
 
+        this.simpleMoveComp = this.moveNode.addComponent(cc.kSimpleMove);
+
         // console.log(this.moveNode.kComponents)
         // console.log(this.moveNode.kFirstChild)
         // console.log(this.moveNode.kLastChild)
@@ -26,15 +28,15 @@ cc.Class({
 
     // 按钮调用，使得节点运动
     move () {
-        // this.moveNode.kState = "isMoving";
+        this.moveNode.kState = "isMoving";
         // cc.tween(this.moveNode)
         //     .by(2, { x: 400 })
         //     .call(() => this.moveNode.kState = "stop")
         //     .start();
-        // this.moveNode.setkAccelerate(10, 0)
-        // this.moveNode.setkNodeSpeed(10, 0)
-        console.log(this.moveNode.getkNodeSpeed())
-        console.log(this.moveNode.getkAccelerate())
+        // this.simpleMoveComp.setAccelerate(10, 0)
+        this.simpleMoveComp.setMoveSpeed(10, 0)
+        // console.log(this.simpleMoveComp.getMoveSpeed())
+        // console.log(this.simpleMoveComp.getAccelerate())
     }
 
 });
