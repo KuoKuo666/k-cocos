@@ -9,8 +9,6 @@
     'use strict';
 
     var cc = global.cc;
-    var sp = global.sp;
-    var dragonBones = global.dragonBones;
     cc.log('k-cocos v0.1');
 
     // 游戏速率
@@ -40,31 +38,72 @@
         if (_cc && _cc.inputManager) {
             _cc.inputManager._maxTouches = count;
         }
-        // 兼容低版本的 QQ_PLAY
+        // 低版本兼容 QQ_PLAY 的一段逻辑
         if (CC_QQPLAY && BK && BK.inputManager) {
             BK.inputManager._maxTouches = count;
         }
     }
 
     // 扩展移动方式脚本
-    var kNodeMoveComp = cc.Class({
+    cc.kSimpleMove = cc.Class({
+        name: 'cc_kSimpleMove',
         extends: cc.Component,
         properties: {
-            nodeSpeed_x: 0,
-            nodeSpeed_y: 0,
+            speed_x: 0,
+            speed_y: 0,
 
-            nodeAccelerate_x: 0,
-            nodeAccelerate_y: 0
+            accelerate_x: 0,
+            accelerate_y: 0
         },
         editor: {
             // 想让该组件最后执行 update
             executionOrder: 9999
         },
+        // 获取速度
+        getMoveSpeed: function() {
+            return new cc.Vec2(this.speed_x, this.speed_y);
+        },
+        // 设置运动速度
+        setMoveSpeed: function(x, y) {
+            if (x && typeof x === 'object') {
+                this.speed_x = x.x || 0;
+                this.speed_y = x.y || 0;
+            } else {
+                this.speed_x = x || 0;
+                this.speed_y = y || 0;
+            }
+        },
+        // 获取加速度
+        getAccelerate: function() {
+            return new cc.Vec2(this.accelerate_x, this.accelerate_y);
+        },
+        // 设置加速度
+        setAccelerate: function(x, y) {
+            if (x && typeof x === 'object') {
+                this.accelerate_x = x.x || 0;
+                this.accelerate_y = x.y || 0;
+            } else {
+                this.accelerate_x = x || 0;
+                this.accelerate_y = y || 0;
+            }
+        },
+        // 设置目的地
+        setDestination: function(x, y) {
+            // TODO
+            // var a_x, a_y;
+            // if (x && typeof x === 'object') {
+            //     a_x = x.x || 0;
+            //     a_y = x.y || 0;
+            // } else {
+            //     a_x = x || 0;
+            //     a_y = y || 0;
+            // }
+        },
         update: function(dt) {
-            this.nodeSpeed_x += this.nodeAccelerate_x;
-            this.nodeSpeed_y += this.nodeAccelerate_y;
-            this.node.x += this.nodeSpeed_x * dt;
-            this.node.y += this.nodeSpeed_y * dt;
+            this.speed_x += this.accelerate_x;
+            this.speed_y += this.accelerate_y;
+            this.node.x += this.speed_x * dt;
+            this.node.y += this.speed_y * dt;
         }
     });
 
@@ -89,7 +128,7 @@
                     this.kStateCb && this.kStateCb(val, old);
                 }
             },
-            // 获取当前节点上所有组件
+            // 当前节点上所有组件
             kComponents: {
                 get() {
                     return this._components;
@@ -133,125 +172,10 @@
                 set(val) {
                     cc.error(`can not set kFirstChild, please use addChild()`);
                 }
-            },
-            // 快捷获取组件
-            kSprite: {
-                get() {
-                    return this.getComponent(cc.Sprite);
-                },
-                set(val) {
-                    cc.error(`can not set kSprite, please use addComponent()`);
-                }
-            },
-            kLabel: {
-                get() {
-                    return this.getComponent(cc.Label);
-                },
-                set(val) {
-                    cc.error(`can not set kLabel, please use addComponent()`);
-                }
-            },
-            kMask: {
-                get() {
-                    return this.getComponent(cc.Mask);
-                },
-                set(val) {
-                    cc.error(`can not set kMask, please use addComponent()`);
-                }
-            },
-            kGraphics: {
-                get() {
-                    return this.getComponent(cc.Graphics);
-                },
-                set(val) {
-                    cc.error(`can not set kGraphics, please use addComponent()`);
-                }
-            },
-            kAudioSource: {
-                get() {
-                    return this.getComponent(cc.AudioSource);
-                },
-                set(val) {
-                    cc.error(`can not set kAudioSource, please use addComponent()`);
-                }
-            },
-            kAnimation: {
-                get() {
-                    return this.getComponent(cc.Animation);
-                },
-                set(val) {
-                    cc.error(`can not set kAnimation, please use addComponent()`);
-                }
-            },
-            kParticleSystem: {
-                get() {
-                    return this.getComponent(cc.ParticleSystem);
-                },
-                set(val) {
-                    cc.error(`can not set kParticleSystem, please use addComponent()`);
-                }
-            },
-            kSpine: {
-                get() {
-                    return this.getComponent(sp.Skeleton);
-                },
-                set(val) {
-                    cc.error(`can not set kSpine, please use addComponent()`);
-                }
-            },
-            kDragonBones: {
-                get() {
-                    return this.getComponent(dragonBones.ArmatureDisplay);
-                },
-                set(val) {
-                    cc.error(`can not set kDragonBones, please use addComponent()`);
-                }
-            },
-            kButton: {
-                get() {
-                    return this.getComponent(cc.Button);
-                },
-                set(val) {
-                    cc.error(`can not set kButton, please use addComponent()`);
-                }
             }
         });
 
-        // 添加扩展移动脚本，并缓存引用到 _kNodeMoveComp
-        node._kNodeMoveComp = node.addComponent(kNodeMoveComp);
-
-        // 设置速度的方法
-        node.setkNodeSpeed = function(x, y) {
-            if (x && typeof x === 'object') {
-                this._kNodeMoveComp.nodeSpeed_x = x.x || 0;
-                this._kNodeMoveComp.nodeSpeed_y = x.y || 0;
-            } else {
-                this._kNodeMoveComp.nodeSpeed_x = x || 0;
-                this._kNodeMoveComp.nodeSpeed_y = y || 0;
-            }
-        }
-
-        // 获取速度的方法
-        node.getkNodeSpeed = function() {
-            return new cc.Vec2(this._kNodeMoveComp.nodeSpeed_x, this._kNodeMoveComp.nodeSpeed_y);
-        }
-
-        // 设置节点加速度
-        node.setkAccelerate = function(x, y) {
-            if (x && typeof x === 'object') {
-                this._kNodeMoveComp.nodeAccelerate_x = x.x || 0;
-                this._kNodeMoveComp.nodeAccelerate_y = x.y || 0;
-            } else {
-                this._kNodeMoveComp.nodeAccelerate_x = x || 0;
-                this._kNodeMoveComp.nodeAccelerate_y = y || 0;
-            }
-        }
-
-        // 获取加速度的方法
-        node.getkAccelerate = function() {
-            return new cc.Vec2(this._kNodeMoveComp.nodeAccelerate_x, this._kNodeMoveComp.nodeAccelerate_y);
-        }
-
+        // 自定义 _hitTest 回调
         node.kHitTest = function (cb) {
             this._hitTest = cb;
         }
