@@ -8,7 +8,7 @@ export default class NewClass extends cc.Component {
 
     simpleMoveComp: cc.kSimpleMove;
 
-    onLoad () {
+    onLoad() {
         // 扩展节点
         cc.kNode(this.moveNode);
         
@@ -27,7 +27,7 @@ export default class NewClass extends cc.Component {
     }
 
     // 按钮调用，使得节点运动
-    move () {
+    move() {
         // this.moveNode.kState = "isMoving";
         // cc.tween(this.moveNode)
         //     .by(2, { x: 400 })

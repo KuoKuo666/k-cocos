@@ -5,7 +5,7 @@ cc.Class({
         moveNode: cc.Node
     },
 
-    onLoad () {
+    onLoad() {
         // 扩展节点
         cc.kNode(this.moveNode);
 
@@ -27,7 +27,7 @@ cc.Class({
     },
 
     // 按钮调用，使得节点运动
-    move () {
+    move() {
         this.moveNode.kState = "isMoving";
         // cc.tween(this.moveNode)
         //     .by(2, { x: 400 })

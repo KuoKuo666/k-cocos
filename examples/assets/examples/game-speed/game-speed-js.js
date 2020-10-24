@@ -7,7 +7,7 @@ cc.Class({
        updateNode: cc.Node
     },
 
-    onLoad () {
+    onLoad() {
         // 使物理生效
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getPhysicsManager().enabledAccumulator = true;
@@ -32,13 +32,13 @@ cc.Class({
         this.dir = -1;
     },
 
-    setSpeed (event, str) {
+    setSpeed(event, str) {
         const s = +str;
         cc.log('set speed: ' + s);
         cc.kSpeed(s);
     },
 
-    update (dt) {
+    update(dt) {
         this.updateNode.y += this.dir * this.updateNodeSpeed * dt;
         if (this.updateNode.y < -80) {
             this.updateNode.y = -80;

@@ -10,7 +10,7 @@ export default class GameSpeed extends cc.Component {
     updateNodeSpeed: number = 300;
     dir: number = -1;
 
-    onLoad () {
+    onLoad() {
         // 使物理生效
         cc.director.getPhysicsManager().enabled = true;
         cc.director.getPhysicsManager().enabledAccumulator = true;
@@ -31,13 +31,13 @@ export default class GameSpeed extends cc.Component {
         ).start();
     }
 
-    setSpeed (event, str: string) {
+    setSpeed(event, str: string) {
         const s = +str;
         cc.log('set speed: ' + s);
         cc.kSpeed(s);
     }
 
-    update (dt) {
+    update(dt) {
         this.updateNode.y += this.dir * this.updateNodeSpeed * dt;
         if (this.updateNode.y < -80) {
             this.updateNode.y = -80;

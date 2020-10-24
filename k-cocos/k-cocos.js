@@ -53,7 +53,11 @@
             speed_y: 0,
 
             accelerate_x: 0,
-            accelerate_y: 0
+            accelerate_y: 0,
+
+            hasAim: false,
+            aimPos_x: 0,
+            aimPos_y: 0 
         },
         editor: {
             // 想让该组件最后执行 update
@@ -88,22 +92,44 @@
             }
         },
         // 设置目的地
-        setDestination: function(x, y) {
-            // TODO
-            // var a_x, a_y;
-            // if (x && typeof x === 'object') {
-            //     a_x = x.x || 0;
-            //     a_y = x.y || 0;
-            // } else {
-            //     a_x = x || 0;
-            //     a_y = y || 0;
-            // }
+        setDestination: function(aim, speed, accelerate) {
+            this.aimPos_x = aim.x || 0;
+            this.aimPos_y = aim.y || 0;
+            speed = speed || 0;
+            accelerate = accelerate || 0;
+            var dx = this.aimPos_x - this.node.x;
+            var dy = this.aimPos_y - this.node.y;
+            var len = Math.sqrt(dx * dx + dy * dy);
+            var r_x = dx / len;
+            var r_y = dy / len;
+            this.setMoveSpeed(speed * r_x, speed * r_y);
+            this.setAccelerate(accelerate * r_x, accelerate * r_y);
+            this.hasAim = true;
         },
         update: function(dt) {
             this.speed_x += this.accelerate_x;
             this.speed_y += this.accelerate_y;
-            this.node.x += this.speed_x * dt;
-            this.node.y += this.speed_y * dt;
+            // 有目标时，判断是否到达位置，要对比移动前位置，移动后位置与当前位置
+            if (this.hasAim) {
+                var dir_x1 = this.aimPos_x > this.node.x ? 1 : -1;
+                var dir_y1 = this.aimPos_y > this.node.y ? 1 : -1;
+                // 进行位移
+                this.node.x += this.speed_x * dt;
+                this.node.y += this.speed_y * dt;
+                // 位移后是否越过目的地
+                var dir_x2 = this.aimPos_x > this.node.x ? 1 : -1;
+                var dir_y2 = this.aimPos_y > this.node.y ? 1 : -1;
+                if (((dir_x1 * dir_x2) < 0) || ((dir_y1 * dir_y2) < 0)) {
+                    this.hasAim = false;
+                    this.node.x = this.aimPos_x;
+                    this.node.y = this.aimPos_y;
+                    this.setAccelerate(0, 0);
+                    this.setMoveSpeed(0, 0);
+                }
+            } else {
+                this.node.x += this.speed_x * dt;
+                this.node.y += this.speed_y * dt;
+            }
         }
     });
 

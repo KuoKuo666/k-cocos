@@ -67,12 +67,12 @@ declare namespace cc {
         /**
          * 设置当前移动速度
          */
-        setNodeSpeed: (x: number | cc.Vec2 = 0, y: number = 0) => void;
+        setMoveSpeed: (x: number | cc.Vec2 = 0, y: number = 0) => void;
 
         /**
          * 获取当前移动速度
          */
-        getNodeSpeed: () => cc.Vec2;
+        getMoveSpeed: () => cc.Vec2;
 
         /**
          * 设置当前加速度
@@ -83,5 +83,10 @@ declare namespace cc {
          * 获取当前加速度
          */
         getAccelerate: () => cc.Vec2;
+
+        /**
+         * 设置目的地和运动时速度与可选的加速度，到达后速度与加速度归零
+         */
+        setDestination: (aim: cc.Vec2, speed: number, accelerate?: number) => void;
     }
 }
