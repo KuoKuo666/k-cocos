@@ -1,16 +1,16 @@
-const {ccclass, property} = cc._decorator;
+const {ccclass, property} = cc._decorator
 
 @ccclass
 export default class NewClass extends cc.Component {
 
-    @property(cc.Node)
-    moveNode: cc.Node = undefined;
+    @property(cc.Node) moveNode: cc.Node | undefined = undefined
 
-    simpleMoveComp: cc.kSimpleMove;
+    simpleMoveComp: cc.kSimpleMove | undefined = undefined
 
     onLoad() {
         // 扩展节点
-        cc.kNode(this.moveNode);
+        if (!this.moveNode) { return }
+        cc.kNode(this.moveNode)
         
         // 指定节点状态切换回调函数
         this.moveNode.kStateCb = (newVal, oldVal) => {
@@ -40,6 +40,7 @@ export default class NewClass extends cc.Component {
     }
 
     update() {
+        if (!this.moveNode || !this.simpleMoveComp) { return }
         if (this.moveNode.x < 0) {
             this.simpleMoveComp.setAccelerate(10, 0)
         } else {
