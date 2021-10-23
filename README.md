@@ -1,5 +1,8 @@
 ![](http://cdn.kuokuo666.com/k-cocos/kcocos.jpg)
 
+## 注意
+由于版本迭代太快，2021年9月开始不再维护这个对应 2.x 版本 kcocos，有机会会准备 CocosCreator 3.3.x 以上版本的速度控制方案（如果官方不提供）
+
 ## KCocos
 
 ![](http://img.shields.io/badge/CocosCreator-Ver2.x-blue.svg)
