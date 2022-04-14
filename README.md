@@ -1,9 +1,9 @@
 ![](http://cdn.kuokuo666.com/k-cocos/kcocos.jpg)
 
 ## 注意
-Kcocos 转变示例仓库 -> [https://github.com/KuoKuo666/cocoscreator-examples](https://github.com/KuoKuo666/cocoscreator-examples)
+KCocos 转变示例仓库 -> [https://github.com/KuoKuo666/cocoscreator-examples](https://github.com/KuoKuo666/cocoscreator-examples)
 
-由于版本迭代太快，2021年9月开始不再维护这个对应 2.x 版本 kcocos，有机会会准备 CocosCreator 3.3.x 以上版本的速度控制方案（如果官方不提供）
+由于版本迭代太快，2021年9月开始不再维护这个对应 2.x 版本 kcocos!!! 跟随最新版本会写很多示例到上述链接仓库！游戏速率改变等示例也在上述链接！
 
 ## KCocos
 
